@@ -15,7 +15,7 @@ def access_db():
         dictionary = ibm_db.fetch_both(stmt)
         if(dictionary):
             return "<h1 style='text-align:center;'>Table Values</br></h1>"\
-                    +f"<h2 style='color:blue;text-align:center;'></br>{dictionary['NAME']}</h2>"
+                    +f"<h2 style='color:blue;text-align:center;'></br>{dictionary['Volume']}</h2>"
         else:
             return "<h1 style='color:red;text-align:center;'>Table Values Is Empty"
             
