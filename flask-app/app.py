@@ -1,5 +1,6 @@
 import os
 import ibm_db
+import pandas as pd
 from flask import Flask
 app = Flask(__name__)
 
@@ -11,11 +12,11 @@ conn=ibm_db.connect(os.environ['dbcred'], "", "")
 def access_db():
     try:
         sql = ''' SELECT * FROM JDIRVING.DEMAND '''
-        stmt = ibm_db.exec_immediate(conn,sql)
-        dictionary = ibm_db.fetch_both(stmt)
-        if(dictionary):
+        df = pd.read_sql(sql, conn)
+        #dictionary = ibm_db.fetch_both(stmt)
+        if(df):
             return "<h1 style='text-align:center;'>Table Values</br></h1>"\
-                    +f"<h2 style='color:blue;text-align:center;'></br>{dictionary['Volume']}</h2>"
+                    +f"<h2 style='color:blue;text-align:center;'></br>{df}</h2>"
         else:
             return "<h1 style='color:red;text-align:center;'>Table Values Is Empty"
             
