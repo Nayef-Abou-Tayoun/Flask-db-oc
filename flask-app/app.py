@@ -12,11 +12,11 @@ conn=ibm_db.connect(os.environ['dbcred'], "", "")
 def access_db():
     try:
         sql = ''' SELECT * FROM JDIRVING.DEMAND '''
-        df = pd.read_sql(sql, conn)
+        df = pd.read_sql_query(sql, conn)
         #dictionary = ibm_db.fetch_both(stmt)
         if(df):
             return "<h1 style='text-align:center;'>Table Values</br></h1>"\
-                    +f"<h2 style='color:blue;text-align:center;'></br>{df.to_html}</h2>"
+                    +f"<h2 style='color:blue;text-align:center;'></br>{df.to_html()}</h2>"
         else:
             return "<h1 style='color:red;text-align:center;'>Table Values Is Empty"
             
